@@ -75,6 +75,7 @@ enum SLIDER_POSITION {
 
 -(void)awakeFromNib{
     [super awakeFromNib];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
 
     
@@ -82,6 +83,8 @@ enum SLIDER_POSITION {
     [_sliderView setUserInteractionEnabled:YES];
     [_sliderView addGestureRecognizer:panGesture];
     _sliderPosition = EXPANDED;
+    
+    [_searchView addGestureRecognizer:tapGesture];
 }
 
 - (void) setSliderContentView: (UIView*) view {
@@ -178,7 +181,7 @@ enum SLIDER_POSITION {
 
 #pragma mark - Gesture Recognizer Method
 
-- (IBAction)handlePanGesture:(UIPanGestureRecognizer *)recognizer {
+- (IBAction) handlePanGesture:(UIPanGestureRecognizer *)recognizer {
     
     //NSLog(@"handlePan");
     
@@ -242,6 +245,15 @@ enum SLIDER_POSITION {
                                                      recognizer.view.center.y + translation.y)];
     
 }
+
+
+
+- (IBAction) handleTapGesture:(UITapGestureRecognizer *)recognizer {
+    
+    if(_sliderPosition == HIDDEN)
+        [self slideUp];
+}
+
 
 - (void) translateView:(UIPanGestureRecognizer *)recognizer point:(CGPoint) point {
     recognizer.view.center = point;
