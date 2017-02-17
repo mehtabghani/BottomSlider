@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomSearchView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T85-jR-76f">
+                    <rect key="frame" x="0.0" y="20" width="375" height="116"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foh-pR-wvw">
+                            <rect key="frame" x="8" y="15" width="42" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.88097412480000004" green="1" blue="0.50589609840000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="foh-pR-wvw" firstAttribute="leading" secondItem="T85-jR-76f" secondAttribute="leading" constant="8" id="F0w-F4-eaq"/>
+                        <constraint firstItem="foh-pR-wvw" firstAttribute="top" secondItem="T85-jR-76f" secondAttribute="top" constant="15" id="GBP-gY-XO0"/>
+                        <constraint firstAttribute="height" constant="116" id="a5u-op-k0v"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="116" id="cmN-vP-Viw"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="512" translatesAutoresizingMaskIntoConstraints="NO" id="t7K-sM-Pgb">
+                    <rect key="frame" x="0.0" y="155" width="375" height="512"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGe-rA-NTX">
+                            <rect key="frame" x="333" y="17" width="34" height="30"/>
+                            <state key="normal" title="Slide"/>
+                            <connections>
+                                <action selector="onSlidePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ird-UH-rv7"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.62835150269999995" green="0.79513273169999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="rGe-rA-NTX" firstAttribute="top" secondItem="t7K-sM-Pgb" secondAttribute="top" constant="17" id="A8o-s3-afG"/>
+                        <constraint firstAttribute="trailing" secondItem="rGe-rA-NTX" secondAttribute="trailing" constant="8" id="KuW-CB-abj"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="t7K-sM-Pgb" secondAttribute="trailing" id="3lE-6I-PG9"/>
+                <constraint firstAttribute="bottom" secondItem="t7K-sM-Pgb" secondAttribute="bottom" id="Fik-Tr-gjb"/>
+                <constraint firstItem="T85-jR-76f" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="NR4-tO-5c9"/>
+                <constraint firstItem="t7K-sM-Pgb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="W2j-pl-4fp"/>
+                <constraint firstItem="t7K-sM-Pgb" firstAttribute="top" secondItem="T85-jR-76f" secondAttribute="bottom" constant="19" id="gBx-yW-ew7"/>
+                <constraint firstAttribute="trailing" secondItem="T85-jR-76f" secondAttribute="trailing" id="h0z-3K-mRZ"/>
+                <constraint firstItem="T85-jR-76f" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="u6v-L0-cLR"/>
+            </constraints>
+            <connections>
+                <outlet property="_constraintTopSpaceSliderView" destination="gBx-yW-ew7" id="LQn-3q-e94"/>
+                <outlet property="_constraintTrailingSliderView" destination="3lE-6I-PG9" id="NHa-U4-bWb"/>
+                <outlet property="constraintLeadingSliderView" destination="W2j-pl-4fp" id="Z6L-XU-8fc"/>
+                <outlet property="constraintTopSpaceSliderView" destination="gBx-yW-ew7" id="wxZ-Ba-F0t"/>
+                <outlet property="constraintTrailingSliderView" destination="3lE-6I-PG9" id="gJi-sb-Sud"/>
+                <outlet property="searchView" destination="T85-jR-76f" id="01d-Vu-QEK"/>
+                <outlet property="slideButton" destination="rGe-rA-NTX" id="Tza-0X-g0q"/>
+                <outlet property="sliderView" destination="t7K-sM-Pgb" id="jXb-zj-F0z"/>
+            </connections>
+            <point key="canvasLocation" x="41" y="9"/>
+        </view>
+    </objects>
+</document>
