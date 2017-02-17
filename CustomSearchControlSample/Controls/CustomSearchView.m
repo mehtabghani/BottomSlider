@@ -10,7 +10,7 @@
 #import <UIKit/UIGestureRecognizerSubclass.h>
 
 
-const int INTIAL_SLIDER_VIEW_TOP_SPACING = 20;
+const int INTIAL_SLIDER_VIEW_TOP_SPACING = 10;
 const int SLIDER_VIEW_SPACING = 15;
 
 #define BUTTON_TITLE_SLIDE_UP   @"Slide Up"
@@ -125,16 +125,14 @@ enum SLIDER_POSITION {
     
     CGRect mainVieframe = self.frame;
     
-    _constraintTopSpaceSliderView.constant
-    = mainVieframe.size.height - (mainVieframe.size.height * 0.5) ;
-    
-    _constraintLeadingSliderView.constant = SLIDER_VIEW_SPACING;
-    _constraintTrailingSliderView.constant = SLIDER_VIEW_SPACING;
-    
-    
     [UIView animateWithDuration:1.0
                      animations:^{
                         
+                         _constraintTopSpaceSliderView.constant
+                         = mainVieframe.size.height - (mainVieframe.size.height * 0.5) ;
+                         
+                         _constraintLeadingSliderView.constant = SLIDER_VIEW_SPACING;
+                         _constraintTrailingSliderView.constant = SLIDER_VIEW_SPACING;
                          [self layoutIfNeeded];
 
                      }
@@ -149,15 +147,12 @@ enum SLIDER_POSITION {
 
 - (void) slideUp {
 
-    _constraintTopSpaceSliderView.constant = INTIAL_SLIDER_VIEW_TOP_SPACING ;
-    _constraintLeadingSliderView.constant = 0;
-    _constraintTrailingSliderView.constant = 0;
-    
     [UIView animateWithDuration:1.0
                      animations:^{
-                         
+                         _constraintLeadingSliderView.constant = 0;
+                         _constraintTrailingSliderView.constant = 0;
+                         _constraintTopSpaceSliderView.constant = INTIAL_SLIDER_VIEW_TOP_SPACING ;
                          [self layoutIfNeeded];
-                         
                      }
                      completion:^(BOOL finished){
                          NSLog(@"Slide Up!");
@@ -205,37 +200,38 @@ enum SLIDER_POSITION {
     if(recognizer.state == UIGestureRecognizerStateBegan) {
         
         //hide slider if slide down in PARTIAL_EXPANDED mode
-//        if((partialExpandedYPos != 0  && yPos > partialExpandedYPos && _sliderPosition ==  PARTIAL_EXPANDED)) {
-//            [self hideSlider];
-//            return;
-//        }
-        
-        //Slide  up if slide up in PARTIAL_EXPANDED mode
-        if((partialExpandedYPos != 0 && yPos < partialExpandedYPos && _sliderPosition ==  PARTIAL_EXPANDED)) {
-            [self slideUp];
+        if((partialExpandedYPos != 0  && translation.y > 0 && _sliderPosition ==  PARTIAL_EXPANDED)) {
+            [self hideSlider];
             return;
         }
         
-        
+        //Slide up if slide to upward position in PARTIAL_EXPANDED mode
+        if((partialExpandedYPos != 0 && translation.y < 0 && _sliderPosition ==  PARTIAL_EXPANDED)) {
+            [self slideUp];
+            return;
+        }
     }
 
     //Bring back slider to fully expanded postion if less than slideDownLimit
     if(recognizer.state == UIGestureRecognizerStateEnded) {
         
-        if((yPos < slideDownLimit) && _sliderPosition ==  EXPANDED) {
+        if(yPos < slideDownLimit && _sliderPosition ==  EXPANDED) {
             [self translateView:recognizer point:CGPointMake(recognizer.view.center.x , originalYPos)];
             return;
         }
     }
     
     
-    if(yPos < originalYPos && _sliderPosition ==  EXPANDED) {
+    // Bring back slider to fully expanded postion if slide to up when fully expanded
+    if(translation.y <=0 && _sliderPosition ==  EXPANDED) {
         [self translateView:recognizer point:CGPointMake(recognizer.view.center.x , originalYPos)];
         return;
     }
+    
+    
+    // Slide to the partial expanded position
   
     if(yPos >= slideDownLimit && _sliderPosition == EXPANDED) {
-        
        [self slideDown];
         partialExpandedYPos = yPos;
         NSLog(@"Partial Expanded yPOS: %d", partialExpandedYPos);

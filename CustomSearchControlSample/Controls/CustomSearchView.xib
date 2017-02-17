@@ -34,7 +34,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="512" translatesAutoresizingMaskIntoConstraints="NO" id="t7K-sM-Pgb">
-                    <rect key="frame" x="0.0" y="155" width="375" height="512"/>
+                    <rect key="frame" x="0.0" y="146" width="375" height="521"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGe-rA-NTX">
                             <rect key="frame" x="333" y="17" width="34" height="30"/>
@@ -56,7 +56,7 @@
                 <constraint firstAttribute="bottom" secondItem="t7K-sM-Pgb" secondAttribute="bottom" id="Fik-Tr-gjb"/>
                 <constraint firstItem="T85-jR-76f" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="NR4-tO-5c9"/>
                 <constraint firstItem="t7K-sM-Pgb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="W2j-pl-4fp"/>
-                <constraint firstItem="t7K-sM-Pgb" firstAttribute="top" secondItem="T85-jR-76f" secondAttribute="bottom" constant="19" id="gBx-yW-ew7"/>
+                <constraint firstItem="t7K-sM-Pgb" firstAttribute="top" secondItem="T85-jR-76f" secondAttribute="bottom" constant="10" id="gBx-yW-ew7"/>
                 <constraint firstAttribute="trailing" secondItem="T85-jR-76f" secondAttribute="trailing" id="h0z-3K-mRZ"/>
                 <constraint firstItem="T85-jR-76f" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="u6v-L0-cLR"/>
             </constraints>
